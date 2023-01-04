@@ -21,7 +21,7 @@ hide = """
 
 st.markdown(hide, unsafe_allow_html=True)
 
-st.header("Finding the maximal margin hyperplane")
+#st.header("Finding the maximal margin hyperplane")
 
 url = "https://raw.githubusercontent.com/aimeeschwab-mccoy/streamlit_asm/main/forest_fires.csv"
 
