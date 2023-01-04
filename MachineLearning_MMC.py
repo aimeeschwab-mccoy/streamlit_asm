@@ -81,8 +81,8 @@ with col2:
 
     p = sns.scatterplot(data=X, x='Temp', y='Humidity', hue=np.ravel(y), 
         style=np.ravel(y), palette='muted')
-    p.set_ylabel("Humidity")
-    p.set_xlabel("Temperature")
+    p.set_ylabel("Humidity", fontsize=14)
+    p.set_xlabel("Temperature", fontsize=14)
     ax.set_xlim(-3, 3)
     ax.set_ylim(-3, 3)
     plt.plot(xx, yy, 'red')
