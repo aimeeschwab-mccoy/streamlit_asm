@@ -35,8 +35,8 @@ y = fires[['Fire']]
 # Relabel some instances for full separation
 y.at[113,'Fire']=1
 y.at[119,'Fire']=1
-y.at[46,'Fire']=-1
-y.at[67,'Fire']=-1
+y.at[46,'Fire']=0
+y.at[67,'Fire']=0
 
 # Scale the input features
 scaler = StandardScaler()
@@ -85,6 +85,7 @@ with col2:
     p.set_xlabel("Temperature", fontsize=14)
     ax.set_xlim(-3, 3)
     ax.set_ylim(-3, 3)
+    plt.legend(labels=['Fire', 'No fire'])
     plt.plot(xx, yy, 'red')
 
     if showmargin:
