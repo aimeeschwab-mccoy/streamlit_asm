@@ -38,6 +38,9 @@ y.at[119,'Fire']=1
 y.at[46,'Fire']=0
 y.at[67,'Fire']=0
 
+y2 = np.ravel(y)
+y2[y2==0] = -1
+
 # Scale the input features
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
@@ -57,9 +60,9 @@ with col1:
     xx = np.linspace(-3, 3)
     yy = a * xx - (-0.45366098) / beta2
 
-    total = (-0.45366098)**2 + beta1**2 + beta2**2
+    total = beta1**2 + beta2**2
 
-    M = np.min(np.ravel(y)*(-0.45366098 + beta1*X['Temp'] + beta2*X['Humidity'])/total)
+    M = np.min(y2*(-0.45366098 + beta1*X['Temp'] + beta2*X['Humidity'])/total)
 
     st.write("For beta1=", beta1, " and beta2=", beta2, ", the margin is M=", round(M, 3), ".")
 
