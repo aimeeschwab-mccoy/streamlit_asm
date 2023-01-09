@@ -52,8 +52,8 @@ col1, col2 = st.columns([2,3])
 
 with col1:
 
-    beta1 = st.slider(label="Beta1", min_value=0.0, max_value=1.0, value=0.5)
-    beta2 = st.slider(label="Beta2", min_value=-1.0, max_value=0.0, value=-0.5)
+    beta1 = st.slider(label="Beta1", min_value=0.01, max_value=1.0, value=0.5)
+    beta2 = st.slider(label="Beta2", min_value=-1.0, max_value=0.01, value=-0.5)
 
     #beta0 = 1 - (beta1**2) - (beta2**2)
     a = -beta1 / beta2
