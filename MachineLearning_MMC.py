@@ -64,13 +64,19 @@ with col1:
 
     M = np.min(y2*(-0.45366098 + beta1*X['Temp'] + beta2*X['Humidity'])/total)
 
-    st.write("For beta1=", beta1, " and beta2=", beta2, ", the margin is M=", round(M, 3), ".")
+    st.write("Margin = ", round(M, 3), "")
 
     showmargin = st.checkbox(label="Show maximal margin hyperplane?", value=False)
 
     if showmargin:
 
         st.write("The maximal margin hyperplane has beta1 = 0.46 and beta2 = -0.76.")
+
+    showtext = st.checkbox(label="Show description?", value=False)
+
+    if showtext:
+
+        st.write("The scatterplot shows standardized temperature on the horizontal axis and standardized humidity on the vertical axis. Both features range from -3 to +3. A diagonal line separates two classes. Instances below the diagonal line have high temperatures, low humidity, and are classified as Fire. Instances above the diagonal line have low temperatures, high humidity, and are classified as Not fire.")
 
 #    check = st.checkbox("Display frequency table")
 #
