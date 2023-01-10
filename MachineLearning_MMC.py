@@ -75,7 +75,7 @@ with col1:
 
     if showmargin:
 
-        st.write("The maximal margin hyperplane has $w_0$ = -0.45, $w_1$ = 0.46, and $w_2$ = -0.76.")
+        st.write("The maximal margin hyperplane has $w_0$ = -0.4565, $w_1$ = 0.4537, and $w_2$ = -0.7654.")
 
    
 #    check = st.checkbox("Display frequency table")
