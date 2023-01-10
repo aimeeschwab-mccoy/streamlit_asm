@@ -77,12 +77,7 @@ with col1:
 
         st.write("The maximal margin hyperplane has $w_0$ = -0.45, $w_1$ = 0.46, and $w_2$ = -0.76.")
 
-    showtext = st.checkbox(label="Show description?", value=False)
-
-    if showtext:
-
-        st.write("The scatterplot shows standardized temperature on the horizontal axis and standardized humidity on the vertical axis. Both features range from -3 to +3. A hyperplane separates two classes. Instances below the hyperplane have high temperatures, low humidity, and are classified as Fire. Instances above the hyperplane have low temperatures, high humidity, and are classified as No fire.")
-
+   
 #    check = st.checkbox("Display frequency table")
 #
 #    if check:
@@ -113,3 +108,9 @@ with col2:
         ax.fill_between(xx2, yy3, yy4, alpha=0.1, color='grey')
 
     st.pyplot(fig)
+
+    showtext = st.checkbox(label="Show description?", value=False)
+
+    if showtext:
+
+        st.write("The scatterplot shows standardized temperature on the horizontal axis and standardized humidity on the vertical axis. Both features range from -3 to +3. A hyperplane separates two classes. Instances below the hyperplane have high temperatures, low humidity, and are classified as Fire. Instances above the hyperplane have low temperatures, high humidity, and are classified as No fire.")
