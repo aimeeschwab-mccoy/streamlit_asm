@@ -52,8 +52,13 @@ col1, col2 = st.columns([2,3])
 
 with col1:
 
-    beta1 = st.slider(label="Beta1", min_value=0.01, max_value=1.0, value=0.5)
-    beta2 = st.slider(label="Beta2", min_value=-1.0, max_value=0.01, value=-0.5)
+    st.write("$w_1$")
+
+    beta1 = st.slider(label="Choose a value between 0.01 and 1.0.", min_value=0.01, max_value=1.0, value=0.5)
+
+    st.write("$w_2$")
+
+    beta2 = st.slider(label="Choose a value between -1.0 and -0.01.", min_value=-1.0, max_value=0.01, value=-0.5)
 
     #beta0 = 1 - (beta1**2) - (beta2**2)
     a = -beta1 / beta2
@@ -70,13 +75,13 @@ with col1:
 
     if showmargin:
 
-        st.write("The maximal margin hyperplane has beta1 = 0.46 and beta2 = -0.76.")
+        st.write("The maximal margin hyperplane has $w_0$ = -0.45, $w_1$ = 0.46, and $w_2$ = -0.76.")
 
     showtext = st.checkbox(label="Show description?", value=False)
 
     if showtext:
 
-        st.write("The scatterplot shows standardized temperature on the horizontal axis and standardized humidity on the vertical axis. Both features range from -3 to +3. A diagonal line separates two classes. Instances below the diagonal line have high temperatures, low humidity, and are classified as Fire. Instances above the diagonal line have low temperatures, high humidity, and are classified as Not fire.")
+        st.write("The scatterplot shows standardized temperature on the horizontal axis and standardized humidity on the vertical axis. Both features range from -3 to +3. A hyperplane separates two classes. Instances below the hyperplane have high temperatures, low humidity, and are classified as Fire. Instances above the hyperplane have low temperatures, high humidity, and are classified as No fire.")
 
 #    check = st.checkbox("Display frequency table")
 #
