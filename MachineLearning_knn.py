@@ -95,7 +95,7 @@ with col2:
     st.write("Sample size: $n=50$")
     st.write("Number of neighbors: $k$")
 
-    k2 = st.slider(label="Select a value between 1 and 20.", min_value=1, max_value=20, value=5, step=1)
+    k2 = st.slider(label="Select a value between 1 and 20.", min_value=1, max_value=20, value=5, step=1, key=1)
 
 
     knn = KNeighborsClassifier(n_neighbors=k2)
