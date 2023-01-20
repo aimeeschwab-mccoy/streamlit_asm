@@ -75,9 +75,9 @@ col1, col2 = st.columns([1,1])
 
 with col1:
 
-    st.write("Number of neighbors: $k$")
+    st.write("Decision boundary for $n=20$")
 
-    k1 = st.slider(label="Select a value between 1 and 20.", min_value=1, max_value=20, value=5, step=1, key=1)
+    k1 = st.slider(label="Select a value of k between 1 and 20.", min_value=1, max_value=20, value=5, step=1, key=1)
 
     st.image(images20[k1])
    
@@ -89,9 +89,8 @@ with col1:
 
 with col2:
 
+    st.write("Decision boundary for $n=50$")
 
-    st.write("Number of neighbors: $k$")
-
-    k2 = st.slider(label="Select a value between 1 and 20.", min_value=1, max_value=20, value=5, step=1, key=2)
+    k2 = st.slider(label="Select a value of k between 1 and 20.", min_value=1, max_value=20, value=5, step=1, key=2)
 
     st.image(images50[k2])
