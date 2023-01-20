@@ -72,7 +72,7 @@ with col1:
     knn.fit(X20, np.ravel(y20['species']))
 
     fig, ax = plt.subplots()
-    contourf_kwargs = {'alpha': 0.3}
+    contourf_kwargs = {'alpha': 0.2}
 
     p = plot_decision_regions(X_scaled20, np.ravel(y20), clf=knn, contourf_kwargs=contourf_kwargs)
     p.set_title('Decision boundary')
@@ -95,14 +95,14 @@ with col2:
     st.write("Sample size: $n=50$")
     st.write("Number of neighbors: $k$")
 
-    k2 = st.slider(label="Select a value between 1 and 50.", min_value=1, max_value=50, value=5, step=1)
+    k2 = st.slider(label="Select a value between 1 and 20.", min_value=1, max_value=20, value=5, step=1)
 
 
     knn = KNeighborsClassifier(n_neighbors=k2)
     knn.fit(X, np.ravel(y['species']))
 
     fig, ax = plt.subplots()
-    contourf_kwargs = {'alpha': 0.3}
+    contourf_kwargs = {'alpha': 0.2}
 
     p = plot_decision_regions(X_scaled, np.ravel(y), clf=knn, contourf_kwargs=contourf_kwargs)
     p.set_title('Decision boundary')
