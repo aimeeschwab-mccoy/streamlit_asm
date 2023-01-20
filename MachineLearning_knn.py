@@ -29,60 +29,57 @@ st.markdown(hide, unsafe_allow_html=True)
 
 #url = "https://raw.githubusercontent.com/aimeeschwab-mccoy/streamlit_asm/main/forest_fires.csv"
 
-penguins = sns.load_dataset("penguins")
-penguins = penguins.replace(to_replace = ['Adelie','Chinstrap', 'Gentoo'],value = [int(0), int(1), int(2)])
+images20 = {1: "ML_knn_images/knn_streamlit_20-1.png",
+                2: "ML_knn_images/knn_streamlit_20-2.png",
+                3: "ML_knn_images/knn_streamlit_20-3.png",
+                4: "ML_knn_images/knn_streamlit_20-4.png",
+                5: "ML_knn_images/knn_streamlit_20-5.png",
+                6: "ML_knn_images/knn_streamlit_20-6.png",
+                7: "ML_knn_images/knn_streamlit_20-7.png",
+                8: "ML_knn_images/knn_streamlit_20-8.png",
+                9: "ML_knn_images/knn_streamlit_20-9.png",
+                10: "ML_knn_images/knn_streamlit_20-10.png",
+                11: "ML_knn_images/knn_streamlit_20-11.png",
+                12: "ML_knn_images/knn_streamlit_20-12.png",
+                13: "ML_knn_images/knn_streamlit_20-13.png",
+                14: "ML_knn_images/knn_streamlit_20-14.png",
+                15: "ML_knn_images/knn_streamlit_20-15.png",
+                16: "ML_knn_images/knn_streamlit_20-16.png",
+                17: "ML_knn_images/knn_streamlit_20-17.png",
+                18: "ML_knn_images/knn_streamlit_20-18.png",
+                19: "ML_knn_images/knn_streamlit_20-19.png",
+                20: "ML_knn_images/knn_streamlit_20-20.png"}
 
-penguins20 = penguins.sample(n=20, random_state=2).sort_values(by='species')
-penguins50 = penguins.dropna().sample(n=50, random_state=2).sort_values(by='species')
-
-# Define input and output features
-X20 = penguins20[['bill_length_mm', 'bill_depth_mm']]
-y20 = penguins20[['species']]
-
-# Scale the input features
-scaler = StandardScaler()
-X_scaled20 = scaler.fit_transform(X20)
-
-# Convert scaled inputs back to a dataframe
-X20 = pd.DataFrame(X_scaled20, index=X20.index, columns=X20.columns)
-
-# Define input and output features
-X = penguins50[['bill_length_mm', 'bill_depth_mm']]
-y = penguins50[['species']]
-
-# Scale the input features
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
-
-# Convert scaled inputs back to a dataframe
-X = pd.DataFrame(X_scaled, index=X.index, columns=X.columns)
-
+images50 = {1: "ML_knn_images/knn_streamlit_50-1.png",
+                2: "ML_knn_images/knn_streamlit_50-2.png",
+                3: "ML_knn_images/knn_streamlit_50-3.png",
+                4: "ML_knn_images/knn_streamlit_50-4.png",
+                5: "ML_knn_images/knn_streamlit_50-5.png",
+                6: "ML_knn_images/knn_streamlit_50-6.png",
+                7: "ML_knn_images/knn_streamlit_50-7.png",
+                8: "ML_knn_images/knn_streamlit_50-8.png",
+                9: "ML_knn_images/knn_streamlit_50-9.png",
+                10: "ML_knn_images/knn_streamlit_50-10.png",
+                11: "ML_knn_images/knn_streamlit_50-11.png",
+                12: "ML_knn_images/knn_streamlit_50-12.png",
+                13: "ML_knn_images/knn_streamlit_50-13.png",
+                14: "ML_knn_images/knn_streamlit_50-14.png",
+                15: "ML_knn_images/knn_streamlit_50-15.png",
+                16: "ML_knn_images/knn_streamlit_50-16.png",
+                17: "ML_knn_images/knn_streamlit_50-17.png",
+                18: "ML_knn_images/knn_streamlit_50-18.png",
+                19: "ML_knn_images/knn_streamlit_50-19.png",
+                20: "ML_knn_images/knn_streamlit_50-20.png"}
 
 col1, col2 = st.columns([1,1])
 
 with col1:
 
-    st.write("Sample size: $n=20$")
     st.write("Number of neighbors: $k$")
 
-    k = st.slider(label="Select a value between 1 and 20.", min_value=1, max_value=20, value=5, step=1)
+    k1 = st.slider(label="Select a value between 1 and 20.", min_value=1, max_value=20, value=5, step=1, key=1)
 
-
-    knn = KNeighborsClassifier(n_neighbors=k)
-    knn.fit(X20, np.ravel(y20['species']))
-
-    fig, ax = plt.subplots()
-    contourf_kwargs = {'alpha': 0.2}
-
-    p = plot_decision_regions(X_scaled20, np.ravel(y20), clf=knn, contourf_kwargs=contourf_kwargs)
-    p.set_title('Decision boundary')
-    L = plt.legend()
-    L.get_texts()[0].set_text('Adelie')
-    L.get_texts()[1].set_text('Chinstrap')
-    L.get_texts()[2].set_text('Gentoo')
-
-    st.pyplot(fig)
-
+    st.image(images20[k1])
    
 #    check = st.checkbox("Display frequency table")
 #
@@ -92,24 +89,9 @@ with col1:
 
 with col2:
 
-    st.write("Sample size: $n=50$")
+
     st.write("Number of neighbors: $k$")
 
-    k2 = st.slider(label="Select a value between 1 and 20.", min_value=1, max_value=20, value=5, step=1, key=1)
+    k2 = st.slider(label="Select a value between 1 and 20.", min_value=1, max_value=20, value=5, step=1, key=2)
 
-
-    knn = KNeighborsClassifier(n_neighbors=k2)
-    knn.fit(X, np.ravel(y['species']))
-
-    fig, ax = plt.subplots()
-    contourf_kwargs = {'alpha': 0.2}
-
-    p = plot_decision_regions(X_scaled, np.ravel(y), clf=knn, contourf_kwargs=contourf_kwargs)
-    p.set_title('Decision boundary')
-    L = plt.legend()
-    L.get_texts()[0].set_text('Adelie')
-    L.get_texts()[1].set_text('Chinstrap')
-    L.get_texts()[2].set_text('Gentoo')
-
-    st.pyplot(fig)
-
+    st.image(images50[k2])
