@@ -81,7 +81,7 @@ with col1:
 
     st.image(images20[k1])
    
-    check1 = st.checkbox("Display sample frequencies?")
+    check1 = st.checkbox("Display sample frequencies?", key=1)
     
     if check1:
         st.write("Sample contains 6 Adelie penguins, 8 Chinstrap penguins, and 6 Gentoo penguins.")
@@ -95,7 +95,7 @@ with col2:
 
     st.image(images50[k2])
 
-    check2 = st.checkbox("Display sample frequencies?")
+    check2 = st.checkbox("Display sample frequencies?", key=2)
     
     if check2:
         st.write("Sample contains 25 Adelie penguins, 10 Chinstrap penguins, and 15 Gentoo penguins.")
