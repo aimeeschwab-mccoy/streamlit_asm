@@ -89,7 +89,7 @@ with col1:
     check1a = st.checkbox("Show plot description?", key=3)
 
     if check1a:
-        st.write("Scatterplot with bill length ranging from 35 to 55 mm on horizontal axis and bill depth ranging from 14 to 21 on the vertical axis. Regions corresponding to each class are shaded. Small values of k tend to result in a jagged decision boundary line. As k increases, the region for Chinstrap increases, eventually taking over the entire plot.")
+        st.write("Scatterplot with bill length ranging on horizontal axis and bill depth on vertical axis. Regions corresponding to each class are shaded. Small values of k tend to result in a jagged decision boundary line. As k increases, the region for Chinstrap increases, eventually taking over the entire plot.")
 
 
 with col2:
@@ -108,4 +108,4 @@ with col2:
     check2a = st.checkbox("Show plot description?", key=4)
     
     if check2a:
-        st.write("Scatterplot with bill length ranging from 35 to 55 mm on horizontal axis and bill depth ranging from 14 to 21 on the vertical axis. Regions corresponding to each class are shaded. Small values of k tend to result in a jagged decision boundary line. As k increases, the region for Adelie increases. At k=20 three distinct regions still exist, but Adelie penguins are predicted for over half the plot.")
+        st.write("Scatterplot with bill length on horizontal axis and bill depth on vertical axis. Regions corresponding to each class are shaded. Small values of k tend to result in a jagged decision boundary line. As k increases, the region for Adelie increases. At k=20 three distinct regions still exist, but Adelie penguins are predicted for over half the plot.")
