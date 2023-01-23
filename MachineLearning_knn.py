@@ -81,11 +81,11 @@ with col1:
 
     st.image(images20[k1])
    
-#    check = st.checkbox("Display frequency table")
-#
-#    if check:
-#        summary = bobross.groupby(categorical).size().to_frame()
-#        st.dataframe(summary)
+    check1 = st.checkbox("Display sample frequencies?")
+    
+    if check1:
+        st.write("Sample contains 6 Adelie penguins, 8 Chinstrap penguins, and 6 Gentoo penguins.")
+
 
 with col2:
 
@@ -94,3 +94,8 @@ with col2:
     k2 = st.slider(label="Select a value of k between 1 and 20.", min_value=1, max_value=20, value=5, step=1, key=2)
 
     st.image(images50[k2])
+
+    check2 = st.checkbox("Display sample frequencies?")
+    
+    if check2:
+        st.write("Sample contains 25 Adelie penguins, 10 Chinstrap penguins, and 15 Gentoo penguins.")
