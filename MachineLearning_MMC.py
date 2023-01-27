@@ -54,20 +54,20 @@ with col1:
 
     st.write("$w_1$")
 
-    beta1 = st.slider(label="Choose a value between 0.01 and 1.0.", min_value=0.01, max_value=1.0, value=0.5, step=0.01)
+    w1 = st.slider(label="Choose a value between 0.01 and 1.0.", min_value=0.01, max_value=1.0, value=0.5, step=0.01)
 
     st.write("$w_2$")
 
-    beta2 = st.slider(label="Choose a value between -1.0 and -0.01.", min_value=-1.0, max_value=0.01, value=-0.5, step=0.01)
+    w2 = st.slider(label="Choose a value between -1.0 and -0.01.", min_value=-1.0, max_value=0.01, value=-0.5, step=0.01)
 
     #beta0 = 1 - (beta1**2) - (beta2**2)
-    a = -beta1 / beta2
+    a = -w1 / w2
     xx = np.linspace(-3, 3)
-    yy = a * xx - (-0.45366098) / beta2
+    yy = a * xx - (-0.509052230034325) / w2
 
-    total = beta1**2 + beta2**2
+    total = w1**2 + w2**2
 
-    M = np.min(y2*(-0.45366098 + beta1*X['Temp'] + beta2*X['Humidity'])/total)
+    M = np.min(y2*(-0.509052230034325 + w1*X['Temp'] + w2*X['Humidity'])/total)
 
     st.write("Margin = ", round(M, 2), "")
 
@@ -75,7 +75,7 @@ with col1:
 
     if showmargin:
 
-        st.write("The maximal margin hyperplane has $w_0$ = -0.4537, $w_1$ = 0.4565, and $w_2$ = -0.7654.")
+        st.write("The maximal margin hyperplane weights are $w_0$ = -0.5091, $w_1$ = 0.5122, and $w_2$ = -0.8588.")
 
    
 #    check = st.checkbox("Display frequency table")
