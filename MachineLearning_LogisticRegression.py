@@ -86,7 +86,7 @@ col21, col22, col23 = st.columns([1, 1, 1])
 
 with col21: 
 
-    st.markdown("Weights with no regularization (<span style='color:#1f77b4'>blue solid line</span>)", unsafe_allow_html=True)
+    st.markdown("No regularization (<span style='color:#1f77b4'>blue solid line</span>)", unsafe_allow_html=True)
 
     st.write("Intercept:", str(round(lm0.intercept_[0], 3)))
     st.write("Slope:", str(round(lm0.coef_[0,0], 3)))
@@ -94,7 +94,7 @@ with col21:
 
 with col22: 
 
-    st.markdown("Weights with L1 regularization (<span style='color:#ff7f0e'>orange dotted line</span>)", unsafe_allow_html=True)
+    st.markdown("L1 regularization (<span style='color:#ff7f0e'>orange dotted line</span>)", unsafe_allow_html=True)
 
     st.write("Intercept:", str(round(lm1.intercept_[0], 3)))
     st.write("Slope:", str(round(lm1.coef_[0,0], 3)))
@@ -102,7 +102,7 @@ with col22:
 
 with col23: 
 
-    st.markdown("Weights with L2 regularization (<span style='color:#3ca02c'>green dashed line</span>)", unsafe_allow_html=True)
+    st.markdown("L2 regularization (<span style='color:#3ca02c'>green dashed line</span>)", unsafe_allow_html=True)
 
     st.write("Intercept:", str(round(lm2.intercept_[0], 3)))
     st.write("Slope:", str(round(lm2.coef_[0,0], 3)))
