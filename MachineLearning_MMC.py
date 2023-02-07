@@ -89,7 +89,7 @@ with col2:
     fig, ax = plt.subplots()
 
     p = sns.scatterplot(data=X, x='Temp', y='Humidity', hue=np.ravel(y), 
-        style=np.ravel(y), palette='deep')
+        style=np.ravel(y), palette='tab10')
     p.set_ylabel("Humidity", fontsize=14)
     p.set_xlabel("Temperature", fontsize=14)
     ax.set_xlim(-3, 3)
