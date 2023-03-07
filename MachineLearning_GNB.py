@@ -44,67 +44,89 @@ with col03:
 
     st.write("P(Gentoo):", round(1-b, 2))
 
-col1, col2 = st.columns([1,1])
 
-with col1:
+tab1, tab2 = st.tabs(["Plots", "Table"])
 
-    X = penguins[['body_mass_g']]
-    y = penguins[['species_int']]
-    # Initialize and fit Gaussian naive Bayes with priors
-    NBModel = GaussianNB(priors = [a, b-a, 1-b])
-    NBModel.fit(X, np.ravel(y))
+with tab1: 
+    col1, col2 = st.columns([1,1])
 
-    fig, ax = plt.subplots()
+    with col1:
 
-    # Plot Gaussian naive Bayes model
-    xrange = np.linspace(X.min(), X.max(), 10000)
-    probAdelie = NBModel.predict_proba(xrange.reshape(-1, 1))[:, 0]
-    probChinstrap = NBModel.predict_proba(xrange.reshape(-1, 1))[:, 1]
-    probGentoo = NBModel.predict_proba(xrange.reshape(-1, 1))[:, 2]
+        X = penguins[['body_mass_g']]
+        y = penguins[['species_int']]
+        # Initialize and fit Gaussian naive Bayes with priors
+        NBModel = GaussianNB(priors = [a, b-a, 1-b])
+        NBModel.fit(X, np.ravel(y))
 
-    plt.plot(xrange, probAdelie, color='#1f77b4', linewidth=2, linestyle='-')
-    plt.plot(xrange, probChinstrap, color='#ff7f0e', linewidth=2, linestyle='--')
-    plt.plot(xrange, probGentoo, color='#3ca02c', linewidth=2, linestyle=':')
-    plt.xlabel('Body mass (g)', fontsize=14)
-    plt.ylabel('Probability of each species', fontsize=14)
+        fig, ax = plt.subplots()
 
-    st.pyplot(fig)
+        # Plot Gaussian naive Bayes model
+        xrange = np.linspace(X.min(), X.max(), 10000)
+        probAdelie = NBModel.predict_proba(xrange.reshape(-1, 1))[:, 0]
+        probChinstrap = NBModel.predict_proba(xrange.reshape(-1, 1))[:, 1]
+        probGentoo = NBModel.predict_proba(xrange.reshape(-1, 1))[:, 2]
 
-    showtext = st.checkbox(label="Show probability curve description?", value=False)
+        plt.plot(xrange, probAdelie, color='#1f77b4', linewidth=2, linestyle='-', label='Adelie')
+        plt.plot(xrange, probChinstrap, color='#ff7f0e', linewidth=2, linestyle='--', label='Chinstrap')
+        plt.plot(xrange, probGentoo, color='#3ca02c', linewidth=2, linestyle=':', label='Gentoo')
+        plt.xlabel('Body mass (g)', fontsize=14)
+        plt.ylabel('Probability of each species', fontsize=14)
+        plt.legend()
 
-    if showtext:
+        st.pyplot(fig)
 
-        '''
-        Left: Predicted probabilities for Adelie (blue solid line), Chinstrap (orange dashed line), 
-        and Gentoo (green dotted line) penguins using Gaussian naive Bayes. Changing the prior probabilities 
-        adjusts the fitted probability curves. 
-        '''
+        showtext = st.checkbox(label="Show probability curve description?", value=False)
+
+        if showtext:
+
+            '''
+            Posterior probability curves for Adelie (blue solid line), Chinstrap (orange dashed line), 
+            and Gentoo (green dotted line) penguins using Gaussian naive Bayes. Changing the prior probabilities 
+            adjusts the posterior probability curves. 
+            '''
 
 
-with col2: 
+    with col2: 
 
 
-    fig, ax = plt.subplots()
-    contourf_kwargs = {'alpha': 0.2}
+        fig, ax = plt.subplots()
+        contourf_kwargs = {'alpha': 0.2}
 
-    plot_decision_regions(X.to_numpy(), np.ravel(y), clf=NBModel, contourf_kwargs=contourf_kwargs)
-    L = plt.legend()
-    L.get_texts()[0].set_text('Adelie')
-    L.get_texts()[1].set_text('Chinstrap')
-    L.get_texts()[2].set_text('Gentoo')
+        plot_decision_regions(X.to_numpy(), np.ravel(y), clf=NBModel, contourf_kwargs=contourf_kwargs)
+        L = plt.legend()
+        L.get_texts()[0].set_text('Adelie')
+        L.get_texts()[1].set_text('Chinstrap')
+        L.get_texts()[2].set_text('Gentoo')
 
-    plt.xlabel('Body mass (g)', fontsize=14)
-    plt.ylabel('\n     ', fontsize=14)
+        plt.xlabel('Body mass (g)', fontsize=14)
+        plt.ylabel('\n     ', fontsize=14)
 
-    st.pyplot(fig)
+        st.pyplot(fig)
 
-    showtext2 = st.checkbox(label="Show decision boundary description?", value=False)
+        showtext2 = st.checkbox(label="Show decision boundary description?", value=False)
 
-    if showtext2:
+        if showtext2:
 
-        '''
-        Right: Decision boundary plot based on bill length (mm). Decision boundary cutoffs correspond to 
-        values of body mass where the predicted probabilities intersect. The species with the highest probability
-        curve at a given value of body mass is the predicted class. Classes with greater prior probability have larger 
-        regions in the decision boundary plot.
-        '''
+            '''
+            Decision boundary plot based on bill length (mm). Decision boundary cutoffs correspond to 
+            values of body mass where the predicted probabilities intersect. The species with the highest probability
+            curve at a given value of body mass is the predicted class. Classes with greater prior probability have larger 
+            regions in the decision boundary plot.
+            '''
+
+with tab2:
+
+    st.write("The following table calculates the posterior probabilities and displays the predicted class for a range of body masses.")
+
+    Xnew = np.arange(2500, 6500, 250)
+    prob0 = NBModel.predict_proba(Xnew.reshape(-1, 1))[:,0]
+    prob1 = NBModel.predict_proba(Xnew.reshape(-1, 1))[:,1]
+    prob2 = NBModel.predict_proba(Xnew.reshape(-1, 1))[:,2]
+    pred = NBModel.predict(Xnew.reshape(-1, 1))
+
+    results = pd.DataFrame({'Body mass': Xnew, 'P(Adelie)': prob0, 'P(Chinstrap)': prob1, 'P(Gentoo)': prob2, 'Predicted class': pred})
+
+    results['Predicted class'] = results['Predicted class'].replace(value = ['Adelie','Chinstrap', 'Gentoo'],
+                                                      to_replace = [int(0), int(1), int(2)])
+    st.write(results)
+   
