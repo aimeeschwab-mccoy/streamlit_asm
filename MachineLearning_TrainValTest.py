@@ -123,7 +123,9 @@ with col12:
     val_results = pd.DataFrame({'k': (3, 5, 7, 9), 'Score': classifier.cv_results_["mean_test_score"]})
     st.write(val_results)
 
-    st.write("Best model:", classifier.best_estimator_)
+    bestk_index = val_results['Score'].idxmax()
+
+    st.write("Best k = ", val_results['k'][bestk_index])
 
 
 with col13:
