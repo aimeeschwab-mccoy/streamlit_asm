@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import GridSearchCV
-
+from sklearn.preprocessing import StandardScaler
 
 hide = """
         <style>
@@ -43,6 +43,12 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1-a, random_
 # Split testing again into validation/testing
 X_val, X_test, y_val, y_test = train_test_split(X_test, y_test, test_size=(1-b)/(1-a),  random_state=seed)
 
+# Scale the input features
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_val = scaler.transform(X_val)
+X_test = scaler.transform(X_test)
+
 # Fit k-nearest neighbors on k={3, 5, 7, 9}
 knnModel = KNeighborsClassifier()
 parameters = {'n_neighbors': [3, 5, 7, 9]}
@@ -59,7 +65,7 @@ with col01:
 
     fig, ax = plt.subplots()
 
-    p = sns.scatterplot(x=X_train['density'], y=X_train['alcohol'], hue=np.ravel(y_train), 
+    p = sns.scatterplot(x=X_train[:,0], y=X_train[:,1], hue=np.ravel(y_train), 
                     style=np.ravel(y_train))
     p.set_xlabel('Density', fontsize=14)
     p.set_ylabel('Alcohol', fontsize=14)
@@ -77,7 +83,7 @@ with col02:
 
     fig, ax = plt.subplots()
 
-    p = sns.scatterplot(x=X_val['density'], y=X_val['alcohol'], hue=np.ravel(y_val), 
+    p = sns.scatterplot(x=X_val[:,0], y=X_val[:,1], hue=np.ravel(y_val), 
                     style=np.ravel(y_val))
     p.set_xlabel('Density', fontsize=14)
     p.set_ylabel('Alcohol', fontsize=14)
@@ -95,7 +101,7 @@ with col03:
 
     fig, ax = plt.subplots()
 
-    p = sns.scatterplot(x=X_test['density'], y=X_test['alcohol'], hue=np.ravel(y_test), 
+    p = sns.scatterplot(x=X_test[:,0], y=X_test[:,1], hue=np.ravel(y_test), 
                     style=np.ravel(y_test))
     p.set_xlabel('Density', fontsize=14)
     p.set_ylabel('Alcohol', fontsize=14)
